@@ -10,6 +10,7 @@ router.get(
     "/google/callback",
     passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
+        req.co
         res.redirect("http://papero.tk")
     }
 )

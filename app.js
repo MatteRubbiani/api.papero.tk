@@ -5,6 +5,7 @@ const passport = require("passport")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")(session)
 const connectDB = require("./config/db")
+const cookieParser = require('cookie-parser');
 
 //Load Config
 dotenv.config({path: "./config/config.env"})
@@ -27,6 +28,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+//Cookies Middleware
+app.use(cookieParser());
 
 //Routes
 app.use("/", require("./routes/index"))
