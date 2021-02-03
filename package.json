@@ -1,15 +1,30 @@
 {
   "name": "api.papero.tk",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "papero.tk's API",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatteRubbiani/api.papero.tk.git"
+  },
+  "author": "Matteo",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatteRubbiani/api.papero.tk/issues"
+  },
+  "homepage": "https://github.com/MatteRubbiani/api.papero.tk#readme",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.11.14",
+    "passport": "^0.4.1"
+  },
+  "devDependencies": {
+    "connect-mongo": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "express-session": "^1.17.1",
+    "passport-google-oauth20": "^2.0.0"
   }
 }
