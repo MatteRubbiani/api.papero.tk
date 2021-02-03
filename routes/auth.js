@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router()
 const passport = require("passport")
 
+const get_cookies = function(request) {
+    let cookies = {};
+    request.headers && request.headers.cookie.split(';').forEach(function(cookie) {
+        let parts = cookie.match(/(.*?)=(.*)$/)
+        cookies[ parts[1].trim() ] = (parts[2] || '').trim();
+    });
+    return cookies;
+};
+
 // /auth/google
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }))
 
@@ -10,8 +19,8 @@ router.get(
     "/google/callback",
     passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
-        req.co
-        res.redirect("http://papero.tk")
+        res.send({"from": get_cookies(req)['from_location']}
+        //res.redirect("http://papero.tk")
     }
 )
 
