@@ -20,7 +20,7 @@ const app = express()
 app.use(session({
     secret: "abcde",
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
-    maxAge: 122132131221//new Date(Date.now() + (60*60*24*365))
+    maxAge: 365 * 24 * 60 * 60 * 1000//new Date(Date.now() + (60*60*24*365))
 }))
 
 //Passport Middleware
