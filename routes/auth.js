@@ -15,7 +15,7 @@ router.get("/test", (req, res) => {
     res.send()
 })
 // /auth/google
-/*router.get(
+router.get(
     "/google",
     passport.authenticate("google", { scope: ["profile"] }),
     (req, res)=>{
@@ -23,16 +23,9 @@ router.get("/test", (req, res) => {
         //res.cookie("from_location","teeest")
         res.send()
     }
-)*/
-
-router.get(
-    "/google",
-    (req, res)=>{
-        res.cookie("from_location", req.query.from_location)
-        //res.cookie("from_location","teeest")
-        res.send({"from": req.query.from_location})
-    }
 )
+
+
 
 // callback
 router.get(
@@ -40,8 +33,8 @@ router.get(
     passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
         //res.send({"from": get_cookies(req)['from_location']})
-        res.send(get_cookies(req)['from_location'])
-        //res.redirect(get_cookies(req)['from_location'])
+        //res.send(get_cookies(req)['from_location'])
+        res.redirect(decodeURI(get_cookies(req)['from_location']))
     }
 )
 
