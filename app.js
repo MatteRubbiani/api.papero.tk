@@ -22,7 +22,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
-    maxAge: 60*60*24*365
+    expires: new Date(Date.now() + (60*60*24*365))
 }))
 
 //Passport Middleware
