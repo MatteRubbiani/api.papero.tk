@@ -28,7 +28,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 //Cookies Middleware
-app.use(cookieParser());
+app.use(cookieParser("abcde"));
 
 //Routes
 app.use("/", require("./routes/index"))
