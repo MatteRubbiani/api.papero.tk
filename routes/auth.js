@@ -17,12 +17,16 @@ router.get("/test", (req, res) => {
 // /auth/google
 router.get(
     "/google",
-    passport.authenticate("google", { scope: ["profile"] }),
     (req, res)=> {
         //res.cookie("from_location", req.query.from_location)
         res.cookie("from_location", req.query.from_location, {path: "/"})
-        res.send()
+        res.redirect("http://papero.tk/auth/google/pass")
     }
+)
+
+router.get(
+    "/google/pass",
+    passport.authenticate("google", { scope: ["profile"] })
 )
 
 
