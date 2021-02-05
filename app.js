@@ -17,11 +17,11 @@ connectDB()
 const app = express()
 
 //Sessions
-/*app.use(session({
+app.use(session({
     secret: "abcde",
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
     expires: new Date(Date.now() + (60*60*24*365))
-}))*/
+}))
 
 //Passport Middleware
 app.use(passport.initialize())
