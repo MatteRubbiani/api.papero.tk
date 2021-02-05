@@ -20,10 +20,8 @@ const app = express()
 app.use(session({
     secret: "abcde",
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
-    cookie: { maxAge: 60 * 60 * 24  * 365 },
-    rolling: true,
-    resave: true,
-    saveUninitialized: false
+    cookie: {maxAge: 60*60*24*365},
+    resave: false,
 
 }))
 
