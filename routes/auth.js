@@ -36,9 +36,9 @@ router.get(
     "/google/callback",
     passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
-        res.send(req.cookies)
+        //res.send(req.cookies)
         //res.send(get_cookies(req)['from_location'])
-        //res.redirect(decodeURI(get_cookies(req)['from_location']))
+        res.redirect(decodeURI(get_cookies(req)['from_location']))
     }
 )
 
