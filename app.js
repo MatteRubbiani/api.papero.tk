@@ -20,7 +20,8 @@ const app = express()
 app.use(session({
     secret: "abcde",
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
-    expires: new Date(Date.now() + (60*60*24*365))
+    expires: new Date(Date.now() + (60*60*24*365)),
+    cookie:{_expires : 60000000}
 }))
 
 //Passport Middleware

@@ -7,7 +7,6 @@ module.exports = function (passport){
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "http://papero.tk/auth/google/callback"
-            //callbackURL: "http://localhost:3002/auth/google/callback"
     },
     async (accessToken, refreshToken, profile, done) =>{
         const newUser = {
