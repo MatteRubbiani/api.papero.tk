@@ -19,8 +19,8 @@ router.get(
     "/google",
     passport.authenticate("google", { scope: ["profile"] }),
     (req, res)=>{
-        res.cookie("from_location", req.query.from_location)
-        //res.cookie("from_location","teeest")
+        //res.cookie("from_location", req.query.from_location)
+        res.cookie("from_location","teeest")
         res.send()
     }
 )
@@ -32,7 +32,7 @@ router.get(
     "/google/callback",
     passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
-        res.send({req, res})
+        res.send(get_cookies((req)))
         //res.send(get_cookies(req)['from_location'])
         //res.redirect(decodeURI(get_cookies(req)['from_location']))
     }
