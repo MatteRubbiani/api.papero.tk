@@ -15,13 +15,22 @@ router.get("/test", (req, res) => {
     res.send()
 })
 // /auth/google
-router.get(
+/*router.get(
     "/google",
     passport.authenticate("google", { scope: ["profile"] }),
     (req, res)=>{
-        res.cookie("from_location",req.query.from_location)
+        res.cookie("from_location", req.query.from_location)
         //res.cookie("from_location","teeest")
         res.send()
+    }
+)*/
+
+router.get(
+    "/google",
+    (req, res)=>{
+        res.cookie("from_location", req.query.from_location)
+        //res.cookie("from_location","teeest")
+        res.send({"from": req.query.from_location})
     }
 )
 
