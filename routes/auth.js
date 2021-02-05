@@ -29,8 +29,6 @@ router.get(
     passport.authenticate("google", { scope: ["profile"] })
 )
 
-
-
 // callback
 router.get(
     "/google/callback",
