@@ -25,7 +25,9 @@ app.use(session({
 
 //Passport Middleware
 app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.session({
+    maxAge: 365 * 24 * 60 * 60 * 1000
+}))
 
 //Cookies Middleware
 app.use(cookieParser("abcde"));
