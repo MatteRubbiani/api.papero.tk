@@ -11,7 +11,7 @@ const get_cookies = function(request) {
     return cookies;
 };
 router.get("/test", (req, res) => {
-    res.cookie("from_location", "aaaaa")
+    res.cookie("from_location", "aaaaa", {path: "/"})
     res.send()
 })
 // /auth/google
