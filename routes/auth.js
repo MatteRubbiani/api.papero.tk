@@ -38,7 +38,8 @@ router.get(
     (req, res) =>{
         //res.send(req.cookies)
         //res.send(get_cookies(req)['from_location'])
-        res.redirect(decodeURI(get_cookies(req)['from_location']))
+        //res.(decodeURI(get_cookies(req)['from_location']))
+        res.redirect("http://papero.tk")
     }
 )
 
