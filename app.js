@@ -19,8 +19,6 @@ const app = express()
 //Sessions
 app.use(session({
     secret: "abcde",
-    resave: false,
-    saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
     expires: new Date(Date.now() + (60*60*24*365))
 }))
