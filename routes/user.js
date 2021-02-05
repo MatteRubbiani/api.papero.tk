@@ -11,7 +11,13 @@ const get_cookies = function(request) {
 };
 
 router.get("/get_info", (req, res) =>{
-    res.send({name: req.user.firstName})
+    let googleSignedIn = true
+    if (req.user) googleSignedIn = true //...
+    if (!req.user) res.send(null)
+    res.send({
+        username: req.user.firstName,
+        google_signed_in: googleSignedIn
+    })
 })
 
 module.exports = router;
