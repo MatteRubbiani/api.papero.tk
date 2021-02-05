@@ -12,7 +12,14 @@ const get_cookies = function(request) {
 };
 
 // /auth/google
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }))
+router.get(
+    "/google",
+    passport.authenticate("google", { scope: ["profile"] }),
+    (req, res)=>{
+        //res.cookie("from_location",req.query.from_location)
+        res.cookie("from_location","teeest")
+    }
+)
 
 // callback
 router.get(
