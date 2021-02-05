@@ -20,14 +20,16 @@ const app = express()
 app.use(session({
     secret: "abcde",
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
-    maxAge: 365 * 24 * 60 * 60 * 1000//new Date(Date.now() + (60*60*24*365))
+    cookie: { maxAge: 60 * 60 * 24  * 365 },
+    rolling: true,
+    resave: true,
+    saveUninitialized: false
+
 }))
 
 //Passport Middleware
 app.use(passport.initialize())
-app.use(passport.session({
-    maxAge: 365 * 24 * 60 * 60 * 1000
-}))
+app.use(passport.session({maxAge: 365 * 24 * 60 * 60 * 1000}))
 
 //Cookies Middleware
 app.use(cookieParser("abcde"));
