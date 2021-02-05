@@ -10,14 +10,18 @@ const get_cookies = function(request) {
     });
     return cookies;
 };
-
+router.get("/test", (req, res) => {
+    res.cookie("from_location", "aaaaa")
+    res.send()
+})
 // /auth/google
 router.get(
     "/google",
     passport.authenticate("google", { scope: ["profile"] }),
     (req, res)=>{
-        //res.cookie("from_location",req.query.from_location)
-        res.cookie("from_location","teeest")
+        res.cookie("from_location",req.query.from_location)
+        //res.cookie("from_location","teeest")
+        res.send()
     }
 )
 
@@ -26,8 +30,8 @@ router.get(
     "/google/callback",
     passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
-        res.send({"from": get_cookies(req)['from_location']})
-        //res.redirect("http://papero.tk")
+        //res.send({"from": get_cookies(req)['from_location']})
+        res.redirect(get_cookies(req)['from_location'])
     }
 )
 
