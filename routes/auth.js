@@ -19,7 +19,7 @@ router.get(
     "/google",
     (req, res)=> {
         //res.cookie("from_location", req.query.from_location)
-        res.cookie("from_location", encodeURI(req.query.from_location), {path: "/"})
+        res.cookie("from_location", req.query.from_location, {path: "/"})
         res.redirect("http://papero.tk/auth/google/pass")
     }
 )
@@ -38,8 +38,8 @@ router.get(
     (req, res) =>{
         //res.send(req.cookies)
         //res.send(get_cookies(req)['from_location'])
-        res.send(decodeURI(get_cookies(req)['from_location']))
-        //res.redirect("http://papero.tk")
+        //res.send(decodeURIComponent(get_cookies(req)['from_location']))
+        res.redirect(decodeURIComponent(get_cookies(req)['from_location']))
     }
 )
 
