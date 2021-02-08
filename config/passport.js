@@ -29,6 +29,7 @@ module.exports = function (passport){
         }catch (err){
             console.error(err)
         }
+
     }))
 
     passport.serializeUser((user, done) => {

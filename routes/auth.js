@@ -37,6 +37,7 @@ router.get(
         //res.send(req.cookies)
         //res.send(get_cookies(req)['from_location'])
         //res.send(decodeURIComponent(get_cookies(req)['from_location']))
+        res.cookie('userid', req.user.id, { maxAge: 2592000000 * 12 });
         res.redirect(decodeURIComponent(get_cookies(req)['from_location']))
     }
 )
