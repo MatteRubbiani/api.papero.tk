@@ -19,6 +19,7 @@ router.get("/get_info", (req, res) =>{
     }else{
         username = req.user.firstName
     }
+    if (!username) return null
     res.send({
         username: username,
         google_signed_in: googleSignedIn
