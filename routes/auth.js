@@ -13,12 +13,6 @@ const get_cookies = function(request) {
     return cookies;
 };
 
-
-router.get("/test", (req, res) => {
-    res.cookie("from_location", "aaaaa", {path: "/"})
-    res.send()
-})
-
 // /auth/google
 
 router.get("/google",
@@ -31,13 +25,13 @@ router.get("/google",
 
 router.get(
     "/google/pass",
-    passport.authenticate("google", { scope: ["profile"] }, ()=>{})
+    passport.authenticate("google", { scope: ["profile"] })
 )
 
 // callback
 router.get(
     "/google/callback",
-    passport.authenticate("google", {failureRedirect : "/"}, ()=>{}),
+    passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
         res.cookie('username', req.user.firstName, { maxAge: 2592000000 * 12});
         res.cookie('userId', req.user.id, { maxAge: 2592000000 * 12});
