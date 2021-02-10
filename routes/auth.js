@@ -48,7 +48,7 @@ router.get("/logout", (req, res) =>{
     req.logout()
     let cookies = get_cookies(req)
     for (let key in cookies){
-        res.cookie(key, {maxAge: 0})
+        res.cookie(key, "",{maxAge: 0})
     }
     res.redirect("/")
 })
