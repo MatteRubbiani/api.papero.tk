@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router()
 const passport = require("passport")
+var crypto = require("crypto");
+const generateLocalName = require("../managers/localNameGenerator")
 
 const get_cookies = function(request) {
     let cookies = {};
@@ -10,13 +12,16 @@ const get_cookies = function(request) {
     });
     return cookies;
 };
+
+
 router.get("/test", (req, res) => {
     res.cookie("from_location", "aaaaa", {path: "/"})
     res.send()
 })
+
 // /auth/google
-router.get(
-    "/google",
+
+router.get("/google",
     (req, res)=> {
         //res.cookie("from_location", req.query.from_location)
         res.cookie("from_location", req.query.from_location, {path: "/"})
@@ -26,20 +31,29 @@ router.get(
 
 router.get(
     "/google/pass",
-    passport.authenticate("google", { scope: ["profile"] })
+    passport.authenticate("google", { scope: ["profile"] }, ()=>{})
 )
 
 // callback
 router.get(
     "/google/callback",
-    passport.authenticate("google", {failureRedirect : "/"}),
+    passport.authenticate("google", {failureRedirect : "/"}, ()=>{}),
     (req, res) =>{
-        //res.send(req.cookies)
-        //res.send(get_cookies(req)['from_location'])
-        //res.send(decodeURIComponent(get_cookies(req)['from_location']))
         res.cookie('username', req.user.firstName, { maxAge: 2592000000 * 12});
         res.cookie('userId', req.user.id, { maxAge: 2592000000 * 12});
         res.redirect(decodeURIComponent(get_cookies(req)['from_location']))
+    }
+)
+
+//LOCAL
+router.get(
+    "/local",
+    (req, res) =>{
+        let localName = generateLocalName()
+        let id = crypto.randomBytes(20).toString('hex');
+        res.cookie('username', localName, { maxAge: 2592000000 * 12});
+        res.cookie('userId', id, { maxAge: 2592000000 * 12});
+        res.send("ok")
     }
 )
 
@@ -52,5 +66,6 @@ router.get("/logout", (req, res) =>{
     }
     res.redirect("/")
 })
+
 
 module.exports = router;
