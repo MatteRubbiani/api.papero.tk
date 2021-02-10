@@ -46,8 +46,10 @@ router.get(
 //logout
 router.get("/logout", (req, res) =>{
     req.logout()
-    res.clearCookie("username")
-    res.clearCookie("userId")
+    let cookies = get_cookies(req)
+    for (let key in cookies){
+        res.cookie(key, {maxAge: 0})
+    }
     res.redirect("/")
 })
 
