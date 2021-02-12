@@ -43,6 +43,7 @@ router.get(
 router.get(
     "/local",
     (req, res) =>{
+        req.logout()
         let localName = generateLocalName()
         let id = crypto.randomBytes(20).toString('hex');
         res.cookie('username', localName, { maxAge: 2592000000 * 12});
