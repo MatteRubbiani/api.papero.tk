@@ -14,7 +14,7 @@ let secret = process.env.SYNC_SECRET
 function sync(_from, _to){
     sitesToBeSynced.forEach(site => {
         let url = site + defaultEndpoint
-        let body = JSON.toString({
+        let body = JSON.stringify({
             _from: _from,
             _to: _to,
             secret: secret
