@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router()
 const passport = require("passport")
-var crypto = require("crypto");
+const crypto = require("crypto");
 const generateLocalName = require("../managers/localNameGenerator")
+const sync = require("../managers/activateSyncManager")
 
 const get_cookies = function(request) {
     let cookies = {};
@@ -17,7 +18,6 @@ const get_cookies = function(request) {
 
 router.get("/google",
     (req, res)=> {
-        //res.cookie("from_location", req.query.from_location)
         res.cookie("from_location", req.query.from_location, {path: "/"})
         res.redirect("http://papero.tk/auth/google/pass")
     }
@@ -33,8 +33,14 @@ router.get(
     "/google/callback",
     passport.authenticate("google", {failureRedirect : "/"}),
     (req, res) =>{
+        let cookies = get_cookies(req)
+        let googleLoggedIn = cookies["googleLoggedIn"]
+        if (googleLoggedIn === false){
+            sync(cookies["userId"], req.user.id)
+        }
         res.cookie('username', req.user.firstName, { maxAge: 2592000000 * 12});
         res.cookie('userId', req.user.id, { maxAge: 2592000000 * 12});
+        res.cookie('googleLoggedIn', true, { maxAge: 2592000000 * 12});
         res.redirect(decodeURIComponent(get_cookies(req)['from_location']))
     }
 )
@@ -48,6 +54,7 @@ router.get(
         let id = crypto.randomBytes(20).toString('hex');
         res.cookie('username', localName, { maxAge: 2592000000 * 12});
         res.cookie('userId', id, { maxAge: 2592000000 * 12});
+        res.cookie('googleLoggedIn', false, { maxAge: 2592000000 * 12});
         res.send("ok")
     }
 )
