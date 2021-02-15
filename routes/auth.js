@@ -37,7 +37,7 @@ router.get(
         let googleLoggedIn = cookies["googleLoggedIn"]
         if (googleLoggedIn === false || googleLoggedIn === "false"){
             console.log("syync")
-            sync(cookies["userId"], req.user.id)
+            sync(cookies["userId"].toString(), req.user.id.toString())
 
         }
         res.cookie('username', req.user.firstName, { maxAge: 2592000000 * 12});
