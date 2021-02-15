@@ -14,11 +14,11 @@ let secret = process.env.SYNC_SECRET
 function sync(_from, _to){
     sitesToBeSynced.forEach(site => {
         let url = site + defaultEndpoint
-        let body = {
+        let body = JSON.toString({
             _from: _from,
             _to: _to,
             secret: secret
-        }
+        })
         request.post({
             headers: {'content-type' : 'application/x-www-form-urlencoded'},
             url:     url,
