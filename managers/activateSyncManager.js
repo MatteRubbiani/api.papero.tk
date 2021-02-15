@@ -4,7 +4,7 @@ const request = require('request');
 dotenv.config({path: "../config/config.env"})
 
 let sitesToBeSynced = [
-    "https://papero.tk/server/unseen"
+    "https://papero.tk/server/unseen/games"
 ]
 
 let defaultEndpoint = "/sync"
