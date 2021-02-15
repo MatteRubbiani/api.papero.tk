@@ -35,7 +35,7 @@ router.get(
     (req, res) =>{
         let cookies = get_cookies(req)
         let googleLoggedIn = cookies["googleLoggedIn"]
-        if (googleLoggedIn === false){
+        if (googleLoggedIn === false || googleLoggedIn === "false"){
             console.log("syync")
             sync(cookies["userId"], req.user.id)
 
