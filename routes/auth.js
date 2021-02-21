@@ -57,7 +57,7 @@ router.get(
         res.cookie('username', localName, { maxAge: 2592000000 * 12});
         res.cookie('userId', id, { maxAge: 2592000000 * 12});
         res.cookie('googleLoggedIn', false, { maxAge: 2592000000 * 12});
-        res.send({username: localName})
+        res.send({"username": localName})
     }
 )
 
