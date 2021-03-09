@@ -13,15 +13,12 @@ module.exports = function (passport){
             googleId: profile.id,
             firstName: profile.name.givenName,
         }
-        console.log("aaaaaa", profile.givenName)
         try{
             let user = await User.findOne({googleId: profile.id})
             if (user){
-                console.log("found")
                 done(null, user)
             }else{
                 user = await User.create(newUser)
-                console.log("created")
                 done(null, user)
             }
         }catch (err){
