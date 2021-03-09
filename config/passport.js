@@ -11,7 +11,7 @@ module.exports = function (passport){
     async (accessToken, refreshToken, profile, done) =>{
         const newUser = {
             googleId: profile.id,
-            displayName: profile.displayName
+            firstName: profile.firstName
         }
         try{
             let user = await User.findOne({googleId: profile.id})
