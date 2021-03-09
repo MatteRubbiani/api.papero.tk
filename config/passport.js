@@ -9,11 +9,11 @@ module.exports = function (passport){
         callbackURL: "http://papero.tk/auth/google/callback"
     },
     async (accessToken, refreshToken, profile, done) =>{
-        console.log(profile)
         const newUser = {
             googleId: profile.id,
             firstName: profile.givenName,
         }
+        console.log(profile.givenName)
         try{
             let user = await User.findOne({googleId: profile.id})
             if (user){
