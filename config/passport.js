@@ -12,7 +12,7 @@ module.exports = function (passport){
         console.log(profile)
         const newUser = {
             googleId: profile.id,
-            firstName: profile.given_name,
+            firstName: profile.givenName,
         }
         try{
             let user = await User.findOne({googleId: profile.id})
