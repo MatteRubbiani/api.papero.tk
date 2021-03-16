@@ -16,16 +16,19 @@ router.get("/get_info", (req, res) =>{
     let username
     if (!req.user) {
         username = get_cookies(req)["username"]
-        res.cookie("googleLoggedIn", false, {maxAge: 60*60*24*365})
+        let cookies = get_cookies(req)
+        if (cookies["googleLoggedIn"]){
+            let cookies = get_cookies(req)
+            for (let key in cookies){
+                res.cookie(key, "",{maxAge: 0})
+            }
+        }
     }else{
         username = req.user.firstName
     }
     if (!username) {
         res.send(null)
-        let cookies = get_cookies(req)
-        for (let key in cookies){
-            res.cookie(key, "",{maxAge: 0})
-        }
+
         return null
     }
     res.send({
