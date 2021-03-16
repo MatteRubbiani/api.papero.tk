@@ -21,6 +21,10 @@ router.get("/get_info", (req, res) =>{
     }
     if (!username) {
         res.send(null)
+        let cookies = get_cookies(req)
+        for (let key in cookies){
+            res.cookie(key, "",{maxAge: 0})
+        }
         return null
     }
     res.send({
