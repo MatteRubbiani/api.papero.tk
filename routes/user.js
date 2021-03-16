@@ -17,6 +17,7 @@ router.get("/get_info", (req, res) =>{
     if (!req.user) {
         username = get_cookies(req)["username"]
         let cookies = get_cookies(req)
+        console.log(cookies["googleLoggedIn"])
         if (cookies["googleLoggedIn"]){
             let cookies = get_cookies(req)
             for (let key in cookies){
