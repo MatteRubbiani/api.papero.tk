@@ -19,7 +19,7 @@ const get_cookies = function(request) {
 router.get("/google",
     (req, res)=> {
         res.cookie("from_location", req.query.from_location, {path: "/"})
-        res.redirect("http://papero.tk/auth/google/pass")
+        res.redirect("http://papero.me/auth/google/pass")
     }
 )
 
