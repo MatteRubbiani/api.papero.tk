@@ -5,7 +5,7 @@ const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
 dotenv.config({path: "../config/config.env"})
 
 let sitesToBeSynced = [
-    "https://papero.tk/server/unseen/games"
+    "https://papero.me/server/unseen/games"
 ]
 
 let defaultEndpoint = "/sync"
