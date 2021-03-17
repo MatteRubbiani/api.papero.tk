@@ -12,12 +12,13 @@ let defaultEndpoint = "/sync"
 //default is Post, body, {_from: ..., _to: ..., secret}
 let secret = process.env.SYNC_SECRET
 
-function sync(_from, _to){
+function sync(_from, _to, _username){
     sitesToBeSynced.forEach(site => {
         let url = site + defaultEndpoint
         let data = {
             _from: _from,
             _to: _to,
+            username: _username,
             secret: secret
         };
 
