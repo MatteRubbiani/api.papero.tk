@@ -21,7 +21,8 @@ app.use(session({
     secret: "abcde",
     store: new MongoStore({ mongooseConnection: mongoose.connection}),
     cookie: {maxAge: 60*60*24*365*1000},
-    resave: false
+    resave: false,
+    saveUninitialized: false
 }))
 
 //Passport Middleware
