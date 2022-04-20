@@ -1,5 +1,4 @@
 const dotenv = require("dotenv")
-const request = require('request');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
 
 dotenv.config({path: "../config/config.env"})
