@@ -15,12 +15,11 @@ router.get("/get_info", (req, res) =>{
     if (req.user) googleSignedIn = true //...
     let username
     if (!req.user) {
+        username = get_cookies(req)["username"]
         let cookies = get_cookies(req)
-        username = cookies["username"]
-
         console.log(cookies["googleLoggedIn"])
-
         if (cookies["googleLoggedIn"] === "true"){
+            let cookies = get_cookies(req)
             for (let key in cookies){
                 res.cookie(key, "",{maxAge: 0})
             }
@@ -29,12 +28,9 @@ router.get("/get_info", (req, res) =>{
         username = req.user.firstName
     }
     if (!username) {
-        res.send({
-            username: null,
-            google_signed_in: false
-        })
+        res.send(null)
 
-        return;
+        return null
     }
     res.send({
         username: username,
